@@ -19,10 +19,10 @@ let checkInputError = () => {
     } else if (!$('#bit_limit').val().match(/^[1-9][0-9]*$/)) {
         cardWarning(`Base Limit Error<br>Input type error.`)
         return true;
-    } else if (!A.isNumber) {
+    } else if (!A.isNumber || A.length > Bit_Limit) {
         cardWarning(`Number A input error.`)
         return true;
-    } else if (!B.isNumber) {
+    } else if (!B.isNumber || B.length > Bit_Limit) {
         cardWarning(`Number B input error.`)
         return true;
     }
@@ -124,7 +124,7 @@ let endCarry = num => {
     return ret;
 }
 
-let add = (inputA, inputB) => {
+let add = (inputA, inputB, isCarry = true) => {
     let carry = 0;
     let ret = new Num('');
     for (let i = inputA.val.length - 1; i >= 0; --i) {
@@ -139,6 +139,7 @@ let add = (inputA, inputB) => {
         carry = parseInt(sum / Base);
     }
     // 端回進位
-    if (carry) ret = endCarry(ret);
+    ret.isCarry = carry;
+    if (isCarry && carry) ret = endCarry(ret);
     return ret;
 }

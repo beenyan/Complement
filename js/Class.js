@@ -38,6 +38,9 @@ class Num {
         }
         return new Num('+' + this.val);
     }
+    cleanStartZero() {
+        this.val = this.val.substring(1);
+    }
 }
 
 class ZeroType {
@@ -99,20 +102,42 @@ class TwoType {
         else if (A.isPlus !== B.isPlus) this.Case7();
         else this.Case6();
     }
-    Case3() {
-        Twotype.Case3();
+    Case3() { // 正數
+        Onetype.Case3();
     }
-    Case7() {
-        Onetype.Case5();
+    Case7() { // 異數
+        floatZeroFixed(A, B);
+        if (!A.isPlus) {
+            A.complement(Base - 1, true);
+            A = endCarry(A);
+        } else A.signComplement(Base - 1);
+        if (!B.isPlus) {
+            B.complement(Base - 1, true);
+            B = endCarry(B);
+        } else B.signComplement(Base - 1);
+        A.cleanStartZero();
+        B.cleanStartZero();
+        let sum = add(A, B, false);
+        if (sum.isCarry && sum.val[0] === '0' || !sum.isCarry && sum.val[0] === '1')
+            cardSuccess('Not overflow.');
+        else cardWarning(`Bit overflow`);
     }
-    Case6() {
-        A.complement(Base - 1, true);
-        B.complement(Base - 1, true);
-        A = endCarry(A);
-        B = endCarry(B);
-        let ans = add(A, B);
-        console.log(ans, add(A, B));
-        // if (ans.val[0] === '0') cardWarning(`Bit overflow`);
-        // else cardSuccess(`Not overflow.`);
+    Case6() { // 負數
+        floatZeroFixed(A, B);
+        A.val = A.val.padStart(Bit_Limit - 1, '0');
+        B.val = B.val.padStart(Bit_Limit - 1, '0');
+        if (!A.isPlus) {
+            A.complement(Base - 1, true);
+            A = endCarry(A);
+        } else A.signComplement(Base - 1);
+        if (!B.isPlus) {
+            B.complement(Base - 1, true);
+            B = endCarry(B);
+        } else B.signComplement(Base - 1);
+        A.cleanStartZero();
+        B.cleanStartZero();
+        let sum = add(A, B, false);
+        if (sum.val[0] === '1') cardSuccess('Not overflow.');
+        else cardWarning(`Bit overflow`);
     }
 }
