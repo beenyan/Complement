@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="favicon.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.min.css" rel="stylesheet">
+    <link href="css/Main.css" rel="stylesheet">
+    <title>數位邏輯設計</title>
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="container">
+            <div class="icon_box">
+                <img class="icon" src="favicon.png" alt="icon">
+                <a href="#" class="navbar-brand">數位邏輯設計</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-md-auto">
+                    <li class="nav-item">
+                        <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/beenyan"><i
+                                class="fa fa-github"></i> GitHub</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_blank" rel="noopener" class="nav-link"
+                            href="https://greasyfork.org/zh-TW/users/442438-%E8%81%96%E5%86%B0%E5%A6%82%E7%84%B0#"><i
+                                class="fa fa-twitter"></i> Greasy Fork</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="ans-out-box">
+        <div class="container" style="height: 100%;">
+            <div class="ans-box">
+                <div id="crad" class="card text-white bg-success mb-3" style="width: 35rem;max-width: 80%;">
+                    <div class="card-header" id="card-header">帶號大小表示法</div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title" id="card-title"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="box">
+            <div class="btn-group type-button radio-group-box" role="group"
+                aria-label="Basic radio toggle button group">
+                <div class="radio-group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+                        onclick="changeCradTitle()">
+                    <label class="btn btn-outline-primary" for="btnradio1" id="type0">帶號大小表示法</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                        onclick="changeCradTitle()">
+                    <label class="btn btn-outline-primary" for="btnradio2" id="type1">1 補數表示法</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                        onclick="changeCradTitle()">
+                    <label class="btn btn-outline-primary" for="btnradio3" id="type2">2 補數表示法</label>
+                </div>
+            </div>
+            <div class="number-box">
+                <div class="number-input-box">
+                    <div class="number-input-bg">
+                        <div class="nails1 nails"></div>
+                        <div class="nails2 nails"></div>
+                        <div class="nails3 nails"></div>
+                        <div class="nails4 nails"></div>
+                        <div class="number-input-title">Base</div>
+                        <div class="number-input">
+                            <input type="text" class="number-input-val" id="base" value="10">
+                        </div>
+                    </div>
+                </div>
+                <div class="number-input-box">
+                    <div class="number-input-bg">
+                        <div class="nails1 nails"></div>
+                        <div class="nails2 nails"></div>
+                        <div class="nails3 nails"></div>
+                        <div class="nails4 nails"></div>
+
+                        <div class="number-input-title">Bit Limit</div>
+                        <div class="number-input">
+                            <input type="text" class="number-input-val" id="bit_limit" value="10">
+                        </div>
+                    </div>
+                </div>
+                <div class="number-input-box">
+                    <div class="number-input-bg">
+                        <div class="nails1 nails"></div>
+                        <div class="nails2 nails"></div>
+                        <div class="nails3 nails"></div>
+                        <div class="nails4 nails"></div>
+                        <div class="number-input-title">A Input</div>
+                        <div class="number-input">
+                            <input type="text" class="number-input-val" id="a_input" value="3">
+                        </div>
+                    </div>
+                </div>
+                <div class="number-input-box">
+                    <div class="number-input-bg">
+                        <div class="nails1 nails"></div>
+                        <div class="nails2 nails"></div>
+                        <div class="nails3 nails"></div>
+                        <div class="nails4 nails"></div>
+                        <div class="number-input-title">B Input</div>
+                        <div class="number-input">
+                            <input type="text" class="number-input-val" id="b_input" value="-1.7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="clacans" type="button" class="btn btn-warning">計算答案</button>
+        </div>
+        <footer id="footer">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-unstyled">
+                        <li class="float-end"><a href="#top">Back to top</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100004784462756">Facebook</a></li>
+                        <li><a href="https://greasyfork.org/zh-TW/users/442438-%E8%81%96%E5%86%B0%E5%A6%82%E7%84%B0#">Greasy
+                                Fork</a></li>
+                        <li><a href="https://github.com/beenyan">GitHub</a></li>
+                    </ul>
+                    <p>Made by <a href="https://github.com/beenyan">聖冰如焰</a>.</p>
+                    <p>
+                        © 2021
+                        <a href="#">數位邏輯設計</a>
+                        All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+
+    <script src="js/Class.js"></script>
+
+    <script src="js/Function.js"></script>
+
+    <script src="js/Main.js"></script>
+
+    <script src="js/Listen.js"></script>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
